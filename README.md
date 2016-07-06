@@ -7,11 +7,28 @@ The effect：
 
 # Usage
 
-> You can edit the text and the forground picture. in
-[LuckDraw.java](https://github.com/fanrunqi/LuckDraw/blob/master/app/src/main/java/cn/fanrunqi/luckdraw/LuckDraw.java),line 28 & 121.
+## Step 1
+
+> Copy [LuckDraw.java](https://github.com/fanrunqi/LuckDraw/blob/master/app/src/main/java/cn/fanrunqi/luckdraw/LuckDraw.java) to your project.
+
+## Step 2
+
+> the code to set text and pic.
+
+like:
+
+```
+luckdraw.Init("$7000000",R.drawable.luckdraw_fg);
+        luckdraw.setOnCompleteListener(new LuckDraw.CompleteListener() {
+            @Override
+            public void complete() {
+                Toast.makeText(MainActivity.this,"Complete draw!",Toast.LENGTH_SHORT).show();
+            }
+        });
+```
 
 
-> the layout with your picture width and height.
+> the layout just with your picture width and height.
 
 ```
 <cn.fanrunqi.luckdraw.LuckDraw
