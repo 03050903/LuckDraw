@@ -15,7 +15,6 @@ The effect：
 
 > the code to set text and pic.
 
-like:
 
 ```
 luckdraw.Init("$7000000",R.drawable.luckdraw_fg);
@@ -28,7 +27,7 @@ luckdraw.Init("$7000000",R.drawable.luckdraw_fg);
 ```
 
 
-> the layout just with your picture width and height.
+> the layout with your picture width and height.
 
 ```
 <cn.fanrunqi.luckdraw.LuckDraw
