@@ -31,6 +31,7 @@ luckdraw.Init("$7000000",R.drawable.luckdraw_fg);
 
 ```
 <cn.fanrunqi.luckdraw.LuckDraw
+        android:id="@+id/luckdraw"
         android:layout_width="379dp"
         android:layout_height="126dp" />
 ```
