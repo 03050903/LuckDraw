@@ -11,6 +11,7 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.os.Looper;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -25,7 +26,7 @@ public class LuckDraw extends View {
     /**
      * 背景显示的文字
      */
-    private String mText = "$7000000";
+    private String mText = "";
     /**
      * 文字的四个顶点坐标
      */
@@ -47,8 +48,16 @@ public class LuckDraw extends View {
      * mCanvas绘制内容在其上
      */
     private Bitmap mBitmap;
+    /**
+     * 图片资源id
+     */
+    private int pictureId;
 
-
+    /**
+     *  * -----------------------------------------------其他-----------------------
+     * 是否配置文字和图片信息
+     */
+    private boolean isInit;
     /**
      * view的宽高
      */
@@ -64,6 +73,7 @@ public class LuckDraw extends View {
      */
     private int mLastX;
     private int mLastY;
+
     public LuckDraw(Context context)
     {
         this(context, null);
@@ -83,10 +93,32 @@ public class LuckDraw extends View {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         width = getMeasuredWidth();
         height = getMeasuredHeight();
-        Init();
+        if(isInit){
+            initDraw();
+        }
     }
 
-    private void Init() {
+    /**
+     * 回调接口
+     */
+    public interface CompleteListener{
+       void complete();
+    }
+    private CompleteListener listener;
+    public void setOnCompleteListener(CompleteListener listener){
+        this.listener = listener;
+    }
+
+    /**
+     * 初始设置
+     */
+    public void Init(String text,int id){
+        mText = text;
+        pictureId = id;
+        isInit =true;
+    }
+
+    private void initDraw() {
         /**
          * -------------------------------背景相关---------------------------------
          */
@@ -109,34 +141,34 @@ public class LuckDraw extends View {
         /**
          * 设置画笔宽度
          */
-        mPaint.setStrokeWidth(30);
+        mPaint.setStrokeWidth(50);
 
         mBitmap = Bitmap.createBitmap(width, height,Bitmap.Config.ARGB_8888);
         mCanvas = new Canvas(mBitmap);
         mPaint.setStyle(Paint.Style.FILL);
         mCanvas.drawRoundRect(new RectF(0, 0, width, height), 30, 30,mPaint);
         /**
-         * 绘制遮盖的图片
+         * 绘制图片的bitmap
          */
         mCanvas.drawBitmap(BitmapFactory.decodeResource(getResources(),
-                R.drawable.luckdraw_fg), null, new RectF(0, 0, width, height), null);
+                pictureId), null, new RectF(0, 0, width, height), null);
     }
     @Override
     protected void onDraw(Canvas canvas)
     {
-        canvas.drawText(mText, getWidth() / 2 - mTextBound.width() / 2,
-                getHeight() / 2 + mTextBound.height() / 2, mBackPaint);
-        if (!isComplete)
-        {
-            /**
-             * 绘制线条
-             */
-            mPaint.setStyle(Paint.Style.STROKE);
-            mPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
-            mCanvas.drawPath(mPath, mPaint);
-            canvas.drawBitmap(mBitmap, 0, 0, null);
+            canvas.drawText(mText, getWidth() / 2 - mTextBound.width() / 2,
+                    getHeight() / 2 + mTextBound.height() / 2, mBackPaint);
+            if (!isComplete)
+            {
+                /**
+                 * 绘制手指轨迹
+                 */
+                mPaint.setStyle(Paint.Style.STROKE);
+                mPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+                mCanvas.drawPath(mPath, mPaint);
+                canvas.drawBitmap(mBitmap, 0, 0, null);
+            }
         }
-    }
 
     @Override
     public boolean onTouchEvent(MotionEvent event)
@@ -181,6 +213,7 @@ public class LuckDraw extends View {
         @Override
         public void run()
         {
+            Looper.prepare();
 
             int w = getWidth();
             int h = getHeight();
@@ -221,10 +254,18 @@ public class LuckDraw extends View {
 
                 if (percent > 50)
                 {
-                    isComplete = true;
-                    postInvalidate();
+                    if(!isComplete){
+                        /**
+                         * 回调接口内部靠Handler实现，这里是在子线程中使用
+                         */
+                        listener.complete();
+                        isComplete = true;
+                        postInvalidate();
+                    }
                 }
             }
+
+            Looper.loop();
         }
 
     };
