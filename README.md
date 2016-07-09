@@ -11,14 +11,14 @@ The effect：
 
 > Gradle
 ```
-compile 'cn.fanrunqi:luckdrawlibrary:1.0.0'
+compile 'cn.fanrunqi:luckdrawlibrary:1.0.1'
 ```
 > Maven
 ```
 <dependency>
   <groupId>cn.fanrunqi</groupId>
   <artifactId>luckdrawlibrary</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
   <type>pom</type>
 </dependency>
 ```
@@ -27,13 +27,14 @@ compile 'cn.fanrunqi:luckdrawlibrary:1.0.0'
 
 > the code to set text and pic.
 
-
 ```
-luckdraw.Init("$7000000",R.drawable.luckdraw_fg);
-        luckdraw.setOnCompleteListener(new LuckDraw.CompleteListener() {
+  luckdraw.Init(String text,int drawableResId); //"$7000000",R.drawable.luckdraw_fg
+  luckdraw.setText(String TextColor,int TextSize);//"#dddddd",60
+  luckdraw.setStrokeWidth(int strokeWidth);//50
+  luckdraw.setOnCompleteListener(new LuckDraw.CompleteListener() {
             @Override
             public void complete() {
-                Toast.makeText(MainActivity.this,"Complete draw!",Toast.LENGTH_SHORT).show();
+               //do something
             }
         });
 ```
@@ -42,7 +43,7 @@ luckdraw.Init("$7000000",R.drawable.luckdraw_fg);
 > the layout with your picture width and height.
 
 ```
-<cn.fanrunqi.luckdraw.LuckDraw
+<cn.fanrunqi.luckdrawlibrary.LuckDraw
         android:id="@+id/luckdraw"
         android:layout_width="379dp"
         android:layout_height="126dp" />
