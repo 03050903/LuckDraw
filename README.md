@@ -42,7 +42,7 @@ luckdraw.Init("$7000000",R.drawable.luckdraw_fg);
 > the layout with your picture width and height.
 
 ```
-<cn.fanrunqi.luckdraw.LuckDraw
+<cn.fanrunqi.luckdrawlibrary.LuckDraw
         android:id="@+id/luckdraw"
         android:layout_width="379dp"
         android:layout_height="126dp" />
