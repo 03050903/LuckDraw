@@ -28,10 +28,10 @@ compile 'cn.fanrunqi:luckdrawlibrary:1.0.1'
 > the code to set text and pic.
 
 ```
-luckdraw.Init(String text,int drawableResId); //"$7000000",R.drawable.luckdraw_fg
-        luckdraw.setText(String TextColor,int TextSize);//"#dddddd",60
-        luckdraw.setStrokeWidth(int strokeWidth);//50
-        luckdraw.setOnCompleteListener(new LuckDraw.CompleteListener() {
+  luckdraw.Init(String text,int drawableResId); //"$7000000",R.drawable.luckdraw_fg
+  luckdraw.setText(String TextColor,int TextSize);//"#dddddd",60
+  luckdraw.setStrokeWidth(int strokeWidth);//50
+  luckdraw.setOnCompleteListener(new LuckDraw.CompleteListener() {
             @Override
             public void complete() {
                //do something
