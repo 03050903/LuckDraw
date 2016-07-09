@@ -20,29 +20,24 @@ public class LuckDraw extends View {
 
 
     private  Paint mBackPaint = new Paint();
-
     private String mText = "";
-
     private Rect mTextBound = new Rect();
-
+    private String TextColor = "#dddddd";
+    private int TextSize = 38;
 
     private Paint mPaint = new Paint();
-
+    private int strokeWidth = 50;
     private Path mPath = new Path();
-
     private Canvas mCanvas;
-
     private Bitmap mBitmap;
 
     private int pictureId;
-
     private boolean isInit;
 
     int width;
     int height;
 
     private boolean isComplete;
-
 
     private int mLastX;
     private int mLastY;
@@ -81,19 +76,20 @@ public class LuckDraw extends View {
     }
 
 
-    public void Init(String text,int id){
+    public void Init(String text,int drawableResId){
         mText = text;
-        pictureId = id;
+        pictureId = drawableResId;
         isInit =true;
+    }
+    public void setText(String TextColor,int TextSize){
+        this.TextColor = TextColor;
+        this.TextSize = TextSize;
+    }
+    public void setStrokeWidth(int strokeWidth){
+        this.strokeWidth = strokeWidth;
     }
 
     private void initDraw() {
-
-        mBackPaint.setStyle(Paint.Style.FILL);
-        mBackPaint.setTextScaleX(2f);
-        mBackPaint.setColor(Color.DKGRAY);
-        mBackPaint.setTextSize(38);
-        mBackPaint.getTextBounds(mText, 0, mText.length(), mTextBound);
 
         mPath = new Path();
         mPaint.setColor(Color.parseColor("#c0c0c0"));
@@ -102,8 +98,6 @@ public class LuckDraw extends View {
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setStrokeJoin(Paint.Join.ROUND);
         mPaint.setStrokeCap(Paint.Cap.ROUND);
-
-        mPaint.setStrokeWidth(50);
 
         mBitmap = Bitmap.createBitmap(width, height,Bitmap.Config.ARGB_8888);
         mCanvas = new Canvas(mBitmap);
@@ -116,6 +110,14 @@ public class LuckDraw extends View {
     @Override
     protected void onDraw(Canvas canvas)
     {
+        mBackPaint.setStyle(Paint.Style.FILL);
+        mBackPaint.setTextScaleX(2f);
+        mBackPaint.getTextBounds(mText, 0, mText.length(), mTextBound);
+        mBackPaint.setColor(Color.parseColor(TextColor));
+        mBackPaint.setTextSize(TextSize);
+
+        mPaint.setStrokeWidth(strokeWidth);
+
             canvas.drawText(mText, getWidth() / 2 - mTextBound.width() / 2,
                     getHeight() / 2 + mTextBound.height() / 2, mBackPaint);
             if (!isComplete)

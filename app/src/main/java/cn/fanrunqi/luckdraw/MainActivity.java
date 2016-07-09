@@ -19,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.inject(this);
 
         luckdraw.Init("$7000000",R.drawable.luckdraw_fg);
+        luckdraw.setText("#dddddd",60);
+        luckdraw.setStrokeWidth(50);
         luckdraw.setOnCompleteListener(new LuckDraw.CompleteListener() {
             @Override
             public void complete() {
