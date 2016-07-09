@@ -9,7 +9,19 @@ The effect：
 
 ## Step 1
 
-> Copy [LuckDraw.java](https://github.com/fanrunqi/LuckDraw/blob/master/app/src/main/java/cn/fanrunqi/luckdraw/LuckDraw.java) to your project.
+> Gradle
+```
+compile 'cn.fanrunqi:luckdrawlibrary:1.0.0'
+```
+> Maven
+```
+<dependency>
+  <groupId>cn.fanrunqi</groupId>
+  <artifactId>luckdrawlibrary</artifactId>
+  <version>1.0.0</version>
+  <type>pom</type>
+</dependency>
+```
 
 ## Step 2
 
