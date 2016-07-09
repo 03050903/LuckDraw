@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/LuckDraw.iml" filepath="$PROJECT_DIR$/LuckDraw.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/luckdrawlibrary/luckdrawlibrary.iml" filepath="$PROJECT_DIR$/luckdrawlibrary/luckdrawlibrary.iml" />
     </modules>
   </component>
 </project>

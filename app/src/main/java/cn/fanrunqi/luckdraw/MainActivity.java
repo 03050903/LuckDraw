@@ -3,9 +3,9 @@ package cn.fanrunqi.luckdraw;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
-
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import cn.fanrunqi.luckdrawlibrary.LuckDraw;
 
 public class MainActivity extends AppCompatActivity {
 
