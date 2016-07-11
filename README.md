@@ -7,7 +7,7 @@ The effect：
 
 # Usage
 
-## Step 1
+## dependency
 
 > Gradle
 ```
@@ -23,9 +23,19 @@ compile 'cn.fanrunqi:luckdrawlibrary:1.0.1'
 </dependency>
 ```
 
-## Step 2
+## layout
 
-> the code to set text and pic.
+> the layout with your picture width and height.
+
+```
+<cn.fanrunqi.luckdrawlibrary.LuckDraw
+        android:id="@+id/luckdraw"
+        android:layout_width="379dp"
+        android:layout_height="126dp" />
+```
+## code
+
+> to set text and pic.
 
 ```
   luckdraw.Init(String text,int drawableResId); //"$7000000",R.drawable.luckdraw_fg
@@ -37,14 +47,4 @@ compile 'cn.fanrunqi:luckdrawlibrary:1.0.1'
                //do something
             }
         });
-```
-
-
-> the layout with your picture width and height.
-
-```
-<cn.fanrunqi.luckdrawlibrary.LuckDraw
-        android:id="@+id/luckdraw"
-        android:layout_width="379dp"
-        android:layout_height="126dp" />
 ```
