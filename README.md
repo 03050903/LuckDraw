@@ -3,7 +3,7 @@
 
 The effect：
 
-<img src="http://fanrunqi.github.io/images/LuckDraw/1.gif" width = "232" height = "386"  />
+<img src="https://raw.githubusercontent.com/fanrunqi/LuckDraw/master/screenshots/1.gif" width = "232" height = "386"  />
 
 # Usage
 
